@@ -1,0 +1,9 @@
+{
+  "framework": null,
+  "buildCommand": null,
+  "installCommand": null,
+  "outputDirectory": ".",
+  "headers": [
+    { "source": "/(.*)\\.(js|css|html)", "headers": [{ "key": "Cache-Control", "value": "no-cache, must-revalidate" }] }
+  ]
+}
