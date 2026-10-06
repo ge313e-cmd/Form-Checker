@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0d0f" />
+  <title>Form Checker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=13" />
+</head>
+<body>
+  <header><h1>Form Checker</h1><p>Real-time workout form feedback using your webcam</p></header>
+  <main>
+    <section class="stage">
+      <div class="video-wrap">
+        <video id="video" playsinline muted></video>
+        <canvas id="canvas"></canvas>
+        <div id="hud" aria-live="off">
+          <div class="hud-box hud-reps">
+            <span class="hud-label" id="hudEx">Squat</span>
+            <span class="hud-num" id="hudReps">0</span>
+          </div>
+          <div class="hud-box hud-right hud-form">
+            <div class="hud-row"><span class="hud-label">Form</span><span class="hud-pct" id="hudScore">--</span></div>
+            <div class="hud-meter"><i id="hudFormBar"></i></div>
+          </div>
+          <div id="hudBar" hidden><i></i></div>
+        </div>
+        <ul id="feedback" aria-live="polite"><li>Stand so your whole body is visible, side-on to the camera.</li></ul>
+        <div id="dock">
+          <button type="button" class="dock-btn" id="tabRoutine" aria-label="Daily routine" aria-expanded="false" aria-controls="routineCard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4M9 15l2 2 4-4"/></svg>
+            <span>Daily routine</span>
+          </button>
+          <button type="button" class="dock-btn" id="tabHistory" aria-label="Recent sessions" aria-expanded="false" aria-controls="historyCard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 1 0 2.5-6M3.5 4v4.5H8"/><path d="M12 8v4.5l3 1.8"/></svg>
+            <span>Recent sessions</span>
+          </button>
+        </div>
+        <div id="status">Click Start to turn on your camera</div>
+      </div>
+      <div class="controls">
+        <select id="exercise">
+          <option value="squat">Squat</option>
+          <option value="pushup">Push-up</option>
+          <option value="lunge">Lunge</option>
+          <option value="bulgarian">Bulgarian split squat</option>
+          <option value="glutebridge">Glute bridge</option>
+          <option value="pullup">Pull-up</option>
+          <option value="pikepushup">Pike push-up</option>
+          <option value="plank">Plank</option>
+          <option value="reversecrunch">Reverse crunch</option>
+          <option value="jumpingjack">Jumping jack</option>
+          <option value="curl">Bicep curl</option>
+        </select>
+        <button id="startBtn">Start</button>
+        <button id="stopBtn" disabled>Stop &amp; save</button>
+        <button id="soundBtn" type="button">🔊 Sound on</button>
+        <button id="roastBtn" type="button">😈 Roast on</button>
+      </div>
+    </section>
+    <aside>
+      <div class="stats">
+        <div class="card"><h2>Reps</h2><div id="reps" class="big">0</div></div>
+        <div class="card"><h2>Form</h2><div id="score" class="big">--</div></div>
+      </div>
+      <div class="card" id="routineCard" hidden>
+        <button type="button" class="sheet-close" aria-label="Close">✕</button>
+        <h2>Daily routine</h2>
+        <select id="routineSelect"></select>
+        <div class="row">
+          <button id="runRoutine" type="button">Run</button>
+          <button id="editRoutine" type="button">New</button>
+          <button id="delRoutine" type="button">Delete</button>
+        </div>
+        <div id="editor" hidden>
+          <input id="rName" type="text" placeholder="Routine name (e.g. Leg day)" maxlength="40" />
+          <div id="rDays"></div>
+          <div id="rRows"></div>
+          <div class="row"><button id="addRow" type="button">+ Exercise</button><button id="saveRoutine" type="button">Save routine</button></div>
+        </div>
+        <ul id="routineProgress"></ul>
+      </div>
+      <div class="card" id="historyCard" hidden>
+        <button type="button" class="sheet-close" aria-label="Close">✕</button><h2>Recent sessions</h2><ul id="history"></ul></div>
+    </aside>
+  </main>
+  <div id="backdrop" hidden></div>
+  <script type="module" src="app.js?v=13"></script>
+</body>
+</html>
